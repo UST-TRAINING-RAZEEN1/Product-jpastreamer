@@ -93,6 +93,21 @@ public class ProductService {
                 ));
     }
 
+    public Map<String, Double> calculateProfitForProducts() {
+        return jpaStreamer.stream(ProductEntity.class)
+                .collect(Collectors.toMap(
+                        ProductEntity::getName,
+                        product -> (product.getSellingPrice() - product.getCostPrice()) * product.getStockSold()
+                ));
+    }
+    public Map<String, Integer> calculateRemainingStock() {
+        return jpaStreamer.stream(ProductEntity.class)
+                .collect(Collectors.toMap(
+                        ProductEntity::getName,
+                        product -> product.getStock() - product.getStockSold()
+                ));
+    }
+
 
 }
 

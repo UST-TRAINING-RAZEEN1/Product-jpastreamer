@@ -71,6 +71,16 @@ public class ProductController {
         Map<String, String> bestSeller =productService.findBestSellingProductsByCategory();
         return ResponseEntity.ok(bestSeller);
     }
+    @GetMapping("/profit")
+    public ResponseEntity<Map<String, Double>> calculateProfitForProducts(){
+        Map<String, Double> profit =productService.calculateProfitForProducts();
+        return ResponseEntity.ok(profit);
+    }
+    @GetMapping("/availablestock")
+    public ResponseEntity<Map<String, Integer>> calculateRemainingStock(){
+        Map<String, Integer> profit =productService.calculateRemainingStock();
+        return ResponseEntity.ok(profit);
+    }
 
 
 
